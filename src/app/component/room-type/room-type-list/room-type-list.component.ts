@@ -75,6 +75,7 @@ export class RoomTypeListComponent implements OnInit {
     this.isEditMode = false;
     this.selectedRoomTypeId = id;
     this.showModal = true;
+    console.log("editRoomType" + id);
   }
 
   deleteRoomType(id: number): void {

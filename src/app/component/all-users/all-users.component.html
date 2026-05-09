@@ -1,0 +1,83 @@
+<div class="container mt-10">
+    <h3 class="mb-4"><i class="bi bi-people me-2"></i> All Users</h3>
+
+    <!-- <table class="table" *ngIf="users.length">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>UserID</th>
+                <th>Email</th>
+                <th>isActive</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of users; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ u.userID }}</td>
+                <td>{{ u.email }}</td>
+                <td>
+                    <span class="badge" [ngClass]="u.isActive ? 'bg-success' : 'bg-danger'">
+                        {{ u.isActive ? "Active" : "Inactive" }}
+                    </span>
+                </td>
+                <td>{{ getRoleName(u.roleID) }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <nav *ngIf="totalPages > 1">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1"> <a class="page-link"
+                    (click)="setPage(currentPage - 1)">Previous</a> </li>
+            <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+                [class.active]="currentPage === i + 1"> <a class="page-link" (click)="setPage(i + 1)">{{ i + 1 }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages"> <a class="page-link"
+                    (click)="setPage(currentPage + 1)">Next</a> </li>
+        </ul>
+    </nav> -->
+    <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>UserID</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of pagedUsers; let i = index">
+        <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+        <td>{{ u.userID }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{u.name}}</td>
+        <td>
+          <span class="badge" [ngClass]="u.isActive ? 'bg-success' : 'bg-danger'">
+            {{ u.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+        <td>{{ getRoleName(u.roleID) }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <nav *ngIf="totalPages > 1">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="setPage(currentPage - 1)">Previous</a>
+      </li>
+
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+          [class.active]="currentPage === i + 1">
+        <a class="page-link" (click)="setPage(i + 1)">{{ i + 1 }}</a>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="setPage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

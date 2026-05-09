@@ -1,0 +1,101 @@
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-item-centre mb-3">
+            <h5 class="fw-bold mb-0">
+                <i class="bi bi-door-open me-2"></i> Room Types
+            </h5>
+
+            <button class="btn btn-primary btn-sm" (click)="openAdd()">
+                <i class="bi bi-pluse-circle me-1"></i>Add Room Type
+            </button>
+        </div>
+        <div class="modal fade show d-block" *ngIf="showModal" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- <div class="modal-header">
+                        <h5 class="modal-title">
+                            {{ isEditMode ? 'Edit RoomType' : 'Add RoomType' }}
+                        </h5>
+                        <button type="button" class="btn-close" (click)="closeForm()"></button>
+                    </div> -->
+                    <div class="modal-body">
+                        <app-room-type-form [roomTypeId]="selectedRoomTypeId" (close)="onModalClose($event)">
+                        </app-room-type-form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show" *ngIf="showModal"></div>
+        <!-- filters -->
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Search by room Type.." [(ngModel)]="searchText"
+                    (input)="applyFilter()" />
+            </div>
+
+
+            <div class="col-md-3">
+                <select class="form-select" [(ngModel)]="filterStatus" (change)="applyFilter()">
+                    <option value="ALL">All</option>
+                    <option value="ACTIVE">Active</option>
+                    <option value="INACTIVE">Inactive</option>
+                </select>
+            </div>
+
+
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Type Name</th>
+                        <th>Accessibility</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rt of filteredRoomTypes; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td class="fw-semibold">{{ rt.typeName }}</td>
+                        <td>{{ rt.accessibilityFeatures }}</td>
+                        <td>{{ rt.description }}</td>
+
+                        <td>
+                            <span class="badge" [ngClass]="rt.isActive ? 'bg-success' : 'bg-secondary'">
+                                {{ rt.isActive ? 'Active' : 'Inactive' }}
+                            </span>
+                        </td>
+
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-primary me-1" (click)="editRoomType(rt.roomTypeID)"
+                                title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-warning me-1" (click)="toggleStatus(rt)"
+                                title="Toggle Status">
+                                <i class="bi bi-toggle-on"></i>
+                            </button>
+
+                            <button class="btn btn-sm btn-outline-danger" (click)="deleteRoomType(rt.roomTypeID)"
+                                title="delete">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr *ngIf="!filteredRoomTypes.length && !loading">
+                        <td colspan="6" class="text-center text-muted">
+                            No room types found
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

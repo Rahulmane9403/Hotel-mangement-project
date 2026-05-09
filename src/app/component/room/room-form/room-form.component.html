@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h5 class="modal-title">
+        {{ isEditMode ? 'Edit Room' : 'Add Room' }}
+    </h5>
+    <!-- <button type="button" class="btn-close" (click)="closeForm()"></button> -->
+</div>
+<div class="model-body">
+    <form [formGroup]="roomForm" >
+        <div class="modal-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Room Number</label>
+                    <input class="form-control" formControlName="roomNumber">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Room Type</label>
+                   
+                    <select class="form-select" formControlName="roomTypeID">
+                        <option *ngFor="let rt of roomTypes" [value]="rt.roomTypeID">
+                            {{ rt.typeName }}
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Price</label>
+                    <input type="number" class="form-control" formControlName="price">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Bed Type</label>
+                    <input class="form-control" formControlName="bedType">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">View Type</label>
+                    <input class="form-control" formControlName="viewType">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Status</label>
+                    <select class="form-select" formControlName="status">
+                        <option>Available</option>
+                        <option>Occupied</option>
+                        <option>Under Maintenance</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" formControlName="isActive">
+                        <label class="form-check-label">Active</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-secondary" type="button" (click)="closeForm()">Cancel</button>
+    <button class="btn btn-success" [disabled]="roomForm.invalid || submitting" (click)="onsubmit()">
+        {{ isEditMode ? 'Update' : 'Save' }}
+    </button>
+</div>

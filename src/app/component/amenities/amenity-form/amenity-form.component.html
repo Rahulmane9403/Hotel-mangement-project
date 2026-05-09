@@ -1,0 +1,67 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+
+    <h5 class="fw-bold mb-4">
+      <i class="bi bi-tools me-2"></i>
+      {{ isEditMode ? 'Edit Amenity' : 'Add Amenity' }}
+    </h5>
+
+    <form [formGroup]="amenityForm" (ngSubmit)="onSubmit()">
+
+      <!-- Amenity Name -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Amenity Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Enter amenity name">
+
+        <small class="text-danger"
+          *ngIf="amenityForm.get('name')?.touched && amenityForm.get('name')?.invalid">
+          Amenity name is required
+        </small>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Description</label>
+        <textarea
+          rows="3"
+          class="form-control"
+          formControlName="description"
+          placeholder="Enter description"></textarea>
+      </div>
+
+      <!-- Status (Edit only) -->
+      <div class="form-check mb-3" *ngIf="isEditMode">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          formControlName="isActive"
+          id="isActive">
+        <label class="form-check-label" for="isActive">
+          Active
+        </label>
+      </div>
+
+      <!-- Actions -->
+      <div class="text-end">
+        <button type="submit"
+          class="btn btn-success me-2"
+          [disabled]="amenityForm.invalid || submitting">
+          <i class="bi bi-check-circle me-1"></i>
+          {{ isEditMode ? 'Update' : 'Save' }}
+        </button>
+
+        <button type="button"
+          class="btn btn-secondary"
+          (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

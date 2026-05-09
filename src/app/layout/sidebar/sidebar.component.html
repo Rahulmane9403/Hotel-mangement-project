@@ -1,0 +1,112 @@
+<div class="sidebar-wrapper" [class.collapsed]="collapsed">
+  <div class="sidebar-header d-flex align-items-center justify-content-between p-3">
+    <h5 class="sidebar-title mb-0" *ngIf="!collapsed">
+      <i class="bi bi-menu-button-wide me-2"></i>
+      Menu
+    </h5>
+    <button class="btn btn-sm btn-outline-secondary" (click)="toggle()" 
+            [attr.aria-label]="collapsed ? 'Expand sidebar' : 'Collapse sidebar'">
+      <i class="bi" [class.bi-chevron-left]="!collapsed" [class.bi-chevron-right]="collapsed"></i>
+    </button>
+  </div>
+  
+  <div class="sidebar-content">
+    <ul class="nav flex-column">
+      <!-- Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+          <i class="bi bi-speedometer2 me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Dashboard</span>
+        </a>
+      </li>
+
+      <!-- Rooms Section -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/room-list" routerLinkActive="active">
+          <i class="bi bi-door-closed me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Rooms</span>
+        </a>
+      </li>
+      
+      <!-- Room Types -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/room-type-list" routerLinkActive="active">
+          <i class="bi bi-tags me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Room Types</span>
+        </a>
+      </li>
+
+      <!-- Amenities -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/amenities" routerLinkActive="active">
+          <i class="bi bi-star me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Amenities</span>
+        </a>
+      </li>
+
+      <!-- Room Amenities -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/room-amenity" routerLinkActive="active">
+          <i class="bi bi-list-check me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Room Amenities</span>
+        </a>
+      </li>
+
+      <!-- Reservations -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/reservations" routerLinkActive="active">
+          <i class="bi bi-calendar-check me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Reservations</span>
+        </a>
+      </li>
+
+      <!-- Cancellations -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/cancellations" routerLinkActive="active">
+          <i class="bi bi-calendar-x me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Cancellations</span>
+        </a>
+      </li>
+
+      <!-- Users -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/users" routerLinkActive="active">
+          <i class="bi bi-people me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Users</span>
+        </a>
+      </li>
+
+      <!-- Hotel Search -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/hotel-search" routerLinkActive="active">
+          <i class="bi bi-search me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Hotel Search</span>
+        </a>
+      </li>
+
+      <!-- Feedback -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/feedback" routerLinkActive="active">
+          <i class="bi bi-chat-left-text me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Feedback</span>
+        </a>
+      </li>
+
+      <!-- Reports Section -->
+      <li class="nav-item mt-3" *ngIf="!collapsed">
+        <small class="text-muted px-3">REPORTS</small>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/reports">
+          <i class="bi bi-bar-chart me-2"></i>
+          <span class="sidebar-text" *ngIf="!collapsed">Analytics</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Sidebar Footer -->
+  <div class="sidebar-footer p-3 border-top" *ngIf="!collapsed">
+    <small class="text-muted">© 2025 Hotel Management System</small>
+  </div>
+</div>

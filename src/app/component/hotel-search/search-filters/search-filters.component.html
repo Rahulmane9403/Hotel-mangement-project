@@ -1,0 +1,54 @@
+<div class="card shadow-sw">
+    <div class="card-body">
+        <h6 class="fw-bold mb-3">
+            <i class="bi bi-funnel me-1"></i>
+            Filters
+        </h6>
+
+        <form [formGroup]="filterForm">
+            <div class="mb-3">
+                <label class="form-label fw-semibold"> Price Range (₹)</label>
+                <div class="d-flex gap-2">
+                    <input type="number" class="form-control form-control-sm" placeholder="Min"
+                        formControlName="minPrice">
+                    <input type="number" placeholder="Max" class="form-control form-control-sm"
+                        formControlName="maxPrice">
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold"> Room Type</label>
+                <input class="form-control form-control-sm" placeholder="e.g. Deluxe" formControlName="roomTypeName">
+            </div>
+
+
+
+            <!-- VIEW TYPE -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">View Type</label>
+                <input class="form-control form-control-sm" placeholder="Sea / City / Garden"
+                    formControlName="viewType">
+            </div>
+
+            <!-- AMENITY -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Amenity</label>
+                <input class="form-control form-control-sm" placeholder="WiFi / Pool / Gym"
+                    formControlName="amenityName">
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-primary btn-sm" (click)="onSearch()">
+                    <i class="bi bi-search me-1"></i>
+                    Search
+                </button>
+
+                <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onReset()">
+                    Reset
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

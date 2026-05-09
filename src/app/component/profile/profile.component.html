@@ -1,0 +1,105 @@
+<div class="container mt-10">
+
+  <h3 class="mb-4">
+    <i class="bi bi-person-circle me-2"></i> My Profile
+  </h3>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <!-- Profile Card -->
+  <div *ngIf="user && !loading" class="card shadow-sm">
+    <form class="card-body" [formGroup]="profileForm">
+
+      <!-- <div class="row mb-3">
+        <div class="col-sm-4 fw-bold">User ID</div>
+        <div class="col-sm-8">{{ user.userID }}</div>
+      </div> -->
+
+      <div class="row mb-3">
+        <div class="col-sm-4 fw-bold">Email</div>
+        <div class="col-sm-8">
+
+          <span *ngIf="!editMode">{{ user.email }}</span>
+
+          <input *ngIf="editMode" type="email" class="form-control" formControlName="email" />
+          <small class="text-danger"
+            *ngIf="editMode && profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+            Valid email required
+          </small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-4 fw-bold">Name</div>
+        <div class="col-sm-8">
+
+          <span *ngIf="!editMode">{{ user.name }}</span>
+
+          <input *ngIf="editMode" type="text" class="form-control" formControlName="name" />
+
+          <small class="text-danger"
+            *ngIf="editMode && profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+            Name is required
+          </small>
+
+        </div>
+      </div>
+
+
+      <div class="row mb-3">
+        <div class="col-sm-4 fw-bold">Role</div>
+        <div class="col-sm-8">
+          {{ getRoleName(user.roleID) }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-4 fw-bold">Status</div>
+        <div class="col-sm-8">
+          <span class="badge" [ngClass]="user.isActive ? 'bg-success' : 'bg-danger'">
+            {{ user.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-sm-4 fw-bold">Last Login</div>
+        <div class="col-sm-8">
+          {{ user.lastLogin | date:'medium' }}
+        </div>
+      </div> -->
+      <hr />
+
+      <div class="text-end">
+
+        <!-- Edit -->
+        <button *ngIf="!editMode" class="btn btn-primary" (click)="enableEdit()">
+          <i class="bi bi-pencil"></i> Edit
+        </button>
+
+        <!-- Save -->
+        <button *ngIf="editMode" class="btn btn-success me-2" [disabled]="profileForm.invalid || updating"
+          (click)="saveProfile()">
+          <i class="bi bi-check"></i> Save
+        </button>
+
+        <!-- Cancel -->
+        <button *ngIf="editMode" class="btn btn-secondary" (click)="cancelEdit()">
+          Cancel
+        </button>
+
+      </div>
+
+
+    </form>
+  </div>
+
+</div>

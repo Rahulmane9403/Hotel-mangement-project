@@ -1,0 +1,37 @@
+<div class="model-header">
+    <h5 class="model-title">
+        {{ isEditMode ? 'Edit Room Type' : 'Add Room Type' }}
+    </h5>
+    <!-- <button type="button" class="btn-close" (click)="cancel()"></button> -->
+</div>
+
+<div class="model-body">
+    <form [formGroup]="roomTypeForm">
+        <div class="mb-3">
+            <label class="form-label">Type Name</label>
+            <input class="form-control" formControlName="typeName">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Accessibility Features</label>
+            <textarea rows="2" class="form-control" formControlName="accessibilityFeatures"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea rows="3" class="form-control" formControlName="description"></textarea>
+        </div>
+        <div class="form-check" *ngIf="isEditMode">
+            <input class="form-check-input" type="checkbox" formControlName="isActive">
+            <label class="form-check-label">
+                Active
+            </label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+
+    <button class="btn btn-success" [disabled]="roomTypeForm.invalid || submitting" (click)="onSubmit()">
+        {{ isEditMode ? 'Update' : 'Save' }}
+    </button>
+</div>

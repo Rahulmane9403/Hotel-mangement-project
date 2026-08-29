@@ -17,52 +17,71 @@ import { RoomListComponent } from './component/room/room-list/room-list.componen
 import { RoomAmenityComponent } from './component/room-amenity/room-amenity/room-amenity.component';
 import { HotelSearchPageComponent } from './component/hotel-search/hotel-search-page/hotel-search-page.component';
 import { SearchFiltersComponent } from './component/hotel-search/search-filters/search-filters.component';
+import { CreateReservationComponent } from './component/reservation/create-reservation/create-reservation.component';
+import { GuestDetailsComponent } from './component/reservation/guest-details/guest-details.component';
+import { PaymentComponent } from './component/reservation/payment/payment.component';
+import { ReservationSuccessComponent } from './component/reservation/reservation-success/reservation-success.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: AuthLayoutComponent,
-        canActivate: [guestGuard],
-        children: [
-            { path: '', redirectTo: '/login', pathMatch: 'full' },
-            { path: 'login', component: LoginComponent },
-            { path: 'register', component: RegisterComponent },
-        ],
-    },
-    {
-        path: '',
-        component: MainLayoutComponent,
-        canActivate: [authGuard],
-        children: [
-            {
-                path: 'dashboard',
-                component: DashboardComponent,
-                // canActivate: [RoleGuard],
-                // data: { roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.GUEST] }
-            },
-            {
-                path: 'all-users',
-                component: AllUsersComponent,
-                canActivate: [RoleGuard],
-                data: { roles: [ROLES.ADMIN, ROLES.GUEST] },
-            },
-            {
-                path: 'profile',
-                component: ProfileComponent,
-            },
-            {
-                path: 'amenities',
-                component: AmenitiesComponent,
-            },
-            {
-                path: 'room-type-list',
-                component: RoomTypeListComponent,
-            },
-            { path: 'room-list', component: RoomListComponent, },
-            {path: 'room-amenity', component:RoomAmenityComponent},
-            {path: 'hotel-search-page', component:HotelSearchPageComponent},
-            {path: 'search-filters', component: SearchFiltersComponent}
-        ],
-    },
-    { path: '**', redirectTo: '/login' },
+  {
+    path: '',
+    component: AuthLayoutComponent,
+    canActivate: [guestGuard],
+    children: [
+      { path: '', redirectTo: '/login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+    ],
+  },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        // canActivate: [RoleGuard],
+        // data: { roles: [ROLES.ADMIN, ROLES.MANAGER, ROLES.GUEST] }
+      },
+      {
+        path: 'all-users',
+        component: AllUsersComponent,
+        canActivate: [RoleGuard],
+        data: { roles: [ROLES.ADMIN, ROLES.GUEST] },
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'amenities',
+        component: AmenitiesComponent,
+      },
+      {
+        path: 'room-type-list',
+        component: RoomTypeListComponent,
+      },
+      { path: 'room-list', component: RoomListComponent },
+      { path: 'room-amenity', component: RoomAmenityComponent },
+      { path: 'hotel-search-page', component: HotelSearchPageComponent },
+      { path: 'search-filters', component: SearchFiltersComponent },
+      { path: 'create-reservation', component: CreateReservationComponent },
+      {
+        path: 'guest-details',
+        component: GuestDetailsComponent,
+      },
+
+      {
+        path: 'payment',
+        component: PaymentComponent,
+      },
+
+      {
+        path: 'reservation-success',
+        component: ReservationSuccessComponent,
+      },
+    ],
+  },
+  { path: '**', redirectTo: '/login' },
 ];
